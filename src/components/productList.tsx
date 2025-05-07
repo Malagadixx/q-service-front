@@ -1,6 +1,6 @@
 // components/ProductList.tsx
 
-import { ProductCard } from "./card";
+import { ProductCard } from "./productCard";
 
 export default function ProductList() {
   return (

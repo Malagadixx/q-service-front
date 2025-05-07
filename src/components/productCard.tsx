@@ -1,4 +1,5 @@
-// components/ProductCard.tsx
+import { ProductModal } from "./productModal";
+
 export function ProductCard() {
   return (
     <div className="bg-[#D9D9D9] w-[400px] h-[200px] rounded-[10px] shadow flex justify-between p-4">
@@ -10,8 +11,9 @@ export function ProductCard() {
         <span className="text-[#FF0000] text-sm font-medium">R$ 00.00</span>
       </div>
 
-      {/* Imagem */}
-      <div className="w-[120px] h-[120px] bg-white rounded" />
+      <div className="flex items-center justify-center w-[160px] h-[160px] mt-1 rounded-md bg-white">
+        <ProductModal />
+      </div>
     </div>
   );
 }
