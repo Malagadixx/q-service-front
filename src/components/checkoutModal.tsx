@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
-import { useCart } from "../../context/cartContext";
+import { useCart } from "../context/cartContext";
 
 export function CheckoutModal() {
   const { items, total } = useCart();

@@ -16,7 +16,6 @@ export function ProductCard({ produto }: ProductCardProps) {
           R$ {produto.price}
         </span>
       </div>
-
       <div className="flex items-center justify-center">
         <ProductModal produto={produto} />
       </div>
