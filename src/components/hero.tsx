@@ -28,11 +28,6 @@ export default function Hero() {
           <h1 className="text-2xl font-semibold">Nome do Restaurante</h1>
           <span className="text-red-600 font-medium">Fechado até 18:30</span>
         </div>
-        <div className="ml-auto">
-          <button className="text-xs font-medium text-black px-4 py-2 rounded-md bg-[#C0C0C0] shadow-lg hover:bg-neutral-300">
-            CADASTRAR PRODUTO
-          </button>
-        </div>
       </div>
       <div className="w-full flex gap-8 p-3 items-center justify-center">
         <Link href="#" /> ITENS
