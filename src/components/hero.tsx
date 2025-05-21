@@ -34,13 +34,7 @@ export default function Hero() {
           </button>
         </div>
       </div>
-      <div className="flex gap-8 p-3 items-center justify-start">
-        <Link href="#" /> ITENS
-        <Link href="#" /> ITENS
-        <Link href="#" /> ITENS
-        <Link href="#" /> ITENS
-        <Link href="#" /> ITENS
-        <Link href="#" /> ITENS
+      <div className="w-full flex gap-8 p-3 items-center justify-center">
         <Link href="#" /> ITENS
         <Link href="#" /> ITENS
         <Link href="#" /> ITENS

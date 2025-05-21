@@ -6,10 +6,12 @@ import ProductList from "@/components/productList";
 export default function Home() {
   return (
     <>
-      <NavBar />
-      <Hero />
-      <ProductList />
-      <Footer />
+      <div className="max-w-screen-2xl mx-auto">
+        <NavBar />
+        <Hero />
+        <ProductList />
+        <Footer />
+      </div>
     </>
   );
 }

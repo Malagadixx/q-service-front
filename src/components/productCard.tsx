@@ -6,7 +6,7 @@ interface ProductCardProps {
 
 export function ProductCard({ produto }: ProductCardProps) {
   return (
-    <div className="bg-[#D9D9D9] w-[400px] h-[200px] rounded-[10px] shadow flex justify-between p-4">
+    <div className="bg-[#D9D9D9] w-full h-auto rounded-[10px] shadow flex justify-between p-4">
       <div className="flex flex-col justify-between">
         <div>
           <h2 className="font-semibold text-sm">{produto.name}</h2>

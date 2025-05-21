@@ -10,14 +10,26 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "../context/cartContext";
+import { OrderConfirmedModal } from "./OrderConfirmedModal";
 
 export function CheckoutModal() {
   const { items, total } = useCart();
   const [isOpen, setIsOpen] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [estimatedTime, setEstimatedTime] = useState(0);
+  const [orderFinished, setOrderFinished] = useState(false);
+
+  const handleFinishOrder = () => {
+    const tempo = Math.floor(Math.random() * 31) + 30;
+    setEstimatedTime(tempo);
+    setShowConfirmation(true);
+    setIsOpen(false);
+    setOrderFinished(true);
+  };
 
   return (
     <>
-      {items.length > 0 && (
+      {items.length > 0 && !orderFinished && (
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50">
           <Button
             className="bg-green-600 text-white px-6 py-3 rounded-full shadow-lg"
@@ -27,7 +39,6 @@ export function CheckoutModal() {
           </Button>
         </div>
       )}
-
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent>
           <DialogHeader>
@@ -72,13 +83,21 @@ export function CheckoutModal() {
               </span>
             </div>
             <div>
-              <Button className="w-full bg-black text-white">
-                Finalizar pedido
+              <Button
+                className="w-full mt-4 bg-black text-white"
+                onClick={handleFinishOrder}
+              >
+                Finalizar
               </Button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
+      <OrderConfirmedModal
+        isOpen={showConfirmation}
+        onClose={() => setShowConfirmation(false)}
+        estimatedTime={estimatedTime}
+      />
     </>
   );
 }
