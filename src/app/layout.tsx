@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className="min-h-screen">
       <body
-        className={`${inter.className} antialiased bg-white w-screen min-h-screen`}
+        className={`${inter.className} antialiased bg-white max-w-screen-2xl mx-auto`}
       >
         <CartProvider>{children}</CartProvider>
       </body>
