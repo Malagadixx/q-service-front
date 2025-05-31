@@ -22,15 +22,15 @@ export function ProductModal({ produto }: ProductModalProps) {
   const [quantity, setQuantity] = useState(1);
   const [observation, setObservation] = useState("");
 
-  const { addToCart } = useCart(); // <-- USA O CONTEXTO
+  const { addToCart } = useCart();
 
   const handleAddToCart = () => {
     addToCart({
       id: produto.id,
-      name: produto.name,
-      description: produto.description,
-      price: produto.price,
-      image: produto.image,
+      name: produto.nome,
+      description: produto.descricao,
+      price: produto.preco,
+      image: produto.imagem,
       quantity: quantity,
       observation: observation,
     });
@@ -49,26 +49,26 @@ export function ProductModal({ produto }: ProductModalProps) {
           className="rounded-md cursor-pointer"
           width={160}
           height={160}
-          src={produto.image}
-          alt={produto.name}
+          src={produto.imagem}
+          alt={produto.nome}
         />
       </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{produto.name}</DialogTitle>
+          <DialogTitle>{produto.nome}</DialogTitle>
         </DialogHeader>
         <div className="flex flex-col justify-center items-center space-y-4">
           <Image
             className="rounded-md"
             width={240}
             height={240}
-            src={produto.image}
-            alt={produto.name}
+            src={produto.imagem}
+            alt={produto.nome}
           />
-          <p className="text-xs text-center">{produto.description}</p>
+          <p className="text-xs text-center">{produto.descricao}</p>
           <span className="text-[#00C85A] text-lg font-medium">
-            R$ {produto.price.toFixed(2)}
+            R$ {produto.preco.toFixed(2)}
           </span>
 
           <textarea

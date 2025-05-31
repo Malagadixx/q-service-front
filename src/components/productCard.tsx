@@ -9,11 +9,11 @@ export function ProductCard({ produto }: ProductCardProps) {
     <div className="bg-[#D9D9D9] w-full h-auto rounded-[10px] shadow flex justify-between p-4">
       <div className="flex flex-col justify-between">
         <div>
-          <h2 className="font-semibold text-sm">{produto.name}</h2>
-          <p className="text-xs text-gray-700">{produto.description}</p>
+          <h2 className="font-semibold text-sm">{produto.nome}</h2>
+          <p className="text-xs text-gray-700">{produto.descricao}</p>
         </div>
         <span className="text-[#FF0000] text-sm font-medium">
-          R$ {produto.price}
+          R$ {produto.preco}
         </span>
       </div>
       <div className="flex items-center justify-center">

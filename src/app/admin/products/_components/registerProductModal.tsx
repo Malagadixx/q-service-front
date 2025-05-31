@@ -28,6 +28,24 @@ export function ProductDialog() {
     console.log("Preço:", price);
     console.log("Imagem:", image);
     console.log("Descrição:", description);
+
+    const formData = new FormData()
+
+    formData.append("nome", productName)
+    formData.append("preco", price)
+    formData.append("descricao", description)
+    formData.append("categoriaId", "2") // Adicionar categoria no formulário
+    
+    if(image){
+      formData.append("imagem", image)
+    }
+
+    fetch("https://localhost:7057/api/Produtos", {
+      method: "POST",
+      body: formData,
+    }).catch((err) => {
+      console.error('Erro na requisição:', err)
+    })
   };
 
   return (

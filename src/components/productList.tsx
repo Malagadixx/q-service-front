@@ -3,6 +3,7 @@
 import { useCart } from "@/context/cartContext";
 import { CheckoutModal } from "./checkoutModal";
 import { ProductCard } from "./productCard";
+import { useEffect, useState } from 'react'
 
 type ProductListProps = {
   orderFinished?: boolean;
@@ -12,23 +13,19 @@ export default function ProductList({
   orderFinished = false,
 }: ProductListProps) {
   const { total } = useCart();
+  const [produtos, setProdcuts] = useState<Product[]>([])
 
-  const produtos: Product[] = [
-    {
-      id: 1,
-      name: "Pizza Calabresa",
-      description: "Fatias de calabresa com queijo e molho.",
-      price: 35.9,
-      image: "/produto.png",
-    },
-    {
-      id: 2,
-      name: "Pizza Portuguesa",
-      description: "Presunto, ovo, cebola, queijo e molho.",
-      price: 39.9,
-      image: "/produto.png",
-    },
-  ];
+  useEffect(() => {
+    fetch('https://localhost:7057/api/Produtos')
+      .then((res) => res.json())
+      .then((data: Product[]) => {
+        setProdcuts(data)
+      })
+      .catch((err) => {
+        console.error('Erro na requisição:', err)
+      })
+  }, [])
+
   return (
     <div className="w-full max-w-screen-2xl mx-auto px-4 py-8 mb-6">
       <h1 className="text-lg font-semibold mb-6">ITENS</h1>
