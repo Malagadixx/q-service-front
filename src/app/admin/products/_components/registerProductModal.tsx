@@ -10,13 +10,23 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function ProductDialog() {
+  const [categories, setCategories] = useState<{ id: number; nome: string }[]>(
+    []
+  );
+  const [selectedCategoryId, setSelectedCategoryId] = useState("");
   const [productName, setProductName] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  useEffect(() => {
+    fetch("https://localhost:7057/api/Categorias")
+      .then((res) => res.json())
+      .then((data) => setCategories(data))
+      .catch((err) => console.error("Erro ao buscar categorias:", err));
+  }, []);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -29,23 +39,24 @@ export function ProductDialog() {
     console.log("Imagem:", image);
     console.log("Descrição:", description);
 
-    const formData = new FormData()
+    const formData = new FormData();
 
-    formData.append("nome", productName)
-    formData.append("preco", price)
-    formData.append("descricao", description)
-    formData.append("categoriaId", "2") // Adicionar categoria no formulário
-    
-    if(image){
-      formData.append("imagem", image)
+    formData.append("nome", productName);
+    formData.append("preco", price);
+    formData.append("descricao", description);
+    formData.append("categoriaId", "2");
+    formData.append("categoriaId", selectedCategoryId);
+
+    if (image) {
+      formData.append("imagem", image);
     }
 
     fetch("https://localhost:7057/api/Produtos", {
       method: "POST",
       body: formData,
     }).catch((err) => {
-      console.error('Erro na requisição:', err)
-    })
+      console.error("Erro na requisição:", err);
+    });
   };
 
   return (
@@ -112,6 +123,21 @@ export function ProductDialog() {
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
+          <label htmlFor="" className="font-semibold">
+            Categoria
+          </label>
+          <select
+            className="rounded-full w-[250px] text-center border text-sm text-gray-600"
+            value={selectedCategoryId}
+            onChange={(e) => setSelectedCategoryId(e.target.value)}
+          >
+            <option value="">Selecione uma categoria</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.nome}
+              </option>
+            ))}
+          </select>
 
           <Button
             className="mt-4 bg-neutral-800 text-white w-[150px] h-[32px] text-sm"

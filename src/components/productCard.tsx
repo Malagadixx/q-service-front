@@ -1,10 +1,11 @@
+import { Product } from "@/type/product";
 import { ProductModal } from "./productModal";
 
-interface ProductCardProps {
+interface Props {
   produto: Product;
 }
 
-export function ProductCard({ produto }: ProductCardProps) {
+export function ProductCard({ produto }: Props) {
   return (
     <div className="bg-[#D9D9D9] w-full h-auto rounded-[10px] shadow flex justify-between p-4">
       <div className="flex flex-col justify-between">

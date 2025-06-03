@@ -4,7 +4,7 @@ type Props = {
   imageUrl: string;
 };
 
-export function ProductCard({ name, description, imageUrl }: Props) {
+export function ProductCardAdmin({ name, description, imageUrl }: Props) {
   return (
     <div className="flex items-start space-x-4 w-full max-w-[500px]">
       <img
