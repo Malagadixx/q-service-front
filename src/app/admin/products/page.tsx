@@ -28,7 +28,7 @@ export default function Products() {
             key={product.id}
             name={product.nome}
             description={product.descricao}
-            imageUrl={product.imagemUrl}
+            imagem={product.imagem}
           />
         ))}
       </div>
