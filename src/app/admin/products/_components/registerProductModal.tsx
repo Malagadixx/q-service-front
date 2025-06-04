@@ -33,30 +33,43 @@ export function ProductDialog() {
     if (file) setImage(file);
   };
 
-  const handleSubmit = () => {
-    console.log("Produto:", productName);
-    console.log("Preço:", price);
-    console.log("Imagem:", image);
-    console.log("Descrição:", description);
+  const handleSubmit = async () => {
+    try {
+      console.log("Produto:", productName);
+      console.log("Preço:", price);
+      console.log("Imagem:", image);
+      console.log("Descrição:", description);
 
-    const formData = new FormData();
+      const formData = new FormData();
 
-    formData.append("nome", productName);
-    formData.append("preco", price);
-    formData.append("descricao", description);
-    formData.append("categoriaId", "2");
-    formData.append("categoriaId", selectedCategoryId);
+      formData.append("nome", productName);
+      formData.append("preco", price);
+      formData.append("descricao", description);
+      formData.append("categoriaId", selectedCategoryId);
 
-    if (image) {
-      formData.append("imagem", image);
-    }
+      if (image) {
+        formData.append("imagem", image);
+      }
 
-    fetch("https://localhost:7057/api/Produtos", {
-      method: "POST",
-      body: formData,
-    }).catch((err) => {
+      const response = await fetch("https://localhost:7057/api/Produtos", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao cadastrar produto.");
+      }
+
+      alert("Produto cadastrado com sucesso!");
+      setProductName("");
+      setPrice("");
+      setDescription("");
+      setImage(null);
+      setSelectedCategoryId("");
+    } catch (err) {
       console.error("Erro na requisição:", err);
-    });
+      alert("Erro ao cadastrar o produto. Tente novamente.");
+    }
   };
 
   return (

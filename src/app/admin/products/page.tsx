@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { ProductCardAdmin } from "./_components/productCardAdmin";
 import { ProductDialog } from "./_components/registerProductModal";
-import { Product } from "@/type/product"; // importa o tipo
+import { Product } from "@/type/product";
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
