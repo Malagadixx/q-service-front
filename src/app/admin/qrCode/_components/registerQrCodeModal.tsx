@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export function QRCodeDialog() {
   const [tableNumber, setTableNumber] = useState("");
@@ -26,7 +27,7 @@ export function QRCodeDialog() {
 
   const handleSubmit = async () => {
     if (!tableNumber || !image) {
-      alert("Por favor, insira o número da mesa e selecione uma imagem.");
+      toast.error("Por favor, insira o número da mesa e selecione uma imagem.");
       return;
     }
 
@@ -60,17 +61,18 @@ export function QRCodeDialog() {
       if (!response.ok) {
         const errorText = await response.text();
         throw new Error(
-          `Erro ao cadastrar mesa: ${response.status} - ${errorText}`
+          "Erro ao cadastrar mesa: " + errorText || "Erro desconhecido"
         );
       }
 
-      alert("Mesa cadastrada com sucesso!");
+      toast.success("Mesa cadastrada com sucesso!");
       setTableNumber("");
       setImage(null);
       setOpen(false);
-    } catch (error) {
+      window.location.reload();
+    } catch (error: any) {
       console.error("Erro ao cadastrar mesa:", error);
-      alert("Erro ao cadastrar mesa. Veja o console.");
+      toast.error("Erro ao cadastrar mesa. Veja o console.");
     }
   };
   return (

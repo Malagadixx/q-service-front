@@ -38,7 +38,9 @@ export default function QrCode() {
       </div>
 
       {loading ? (
-        <p>Carregando mesas...</p>
+        <div className="w-full py-4 pb-4 bg-neutral-100 border rounded text-center">
+          <p className="text-xl font-semibold">Carregando produtos...</p>
+        </div>
       ) : (
         <div className="flex flex-wrap gap-4">
           {mesas.length === 0 ? (

@@ -7,8 +7,22 @@ import { Product } from "@/type/product";
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch("https://localhost:7057/api/Produtos");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
     fetch("https://localhost:7057/api/Produtos")
       .then((res) => res.json())
       .then((data) => setProducts(data))
@@ -22,16 +36,20 @@ export default function Products() {
         <ProductDialog />
       </div>
 
-      <div className="p-6 space-y-8 border shadow-md rounded-md">
-        {products.map((product) => (
+      {loading ? (
+        <div className="w-full py-4 pb-4 bg-neutral-100 border rounded text-center">
+          <p className="text-xl font-semibold">Carregando QRCodes...</p>
+        </div>
+      ) : (
+        products.map((product) => (
           <ProductCardAdmin
             key={product.id}
             name={product.nome}
             description={product.descricao}
             imagem={product.imagem}
           />
-        ))}
-      </div>
+        ))
+      )}
     </div>
   );
 }
