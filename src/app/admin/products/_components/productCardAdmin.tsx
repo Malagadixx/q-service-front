@@ -6,7 +6,7 @@ type Props = {
 
 export function ProductCardAdmin({ name, description, imagem }: Props) {
   return (
-    <div className="flex items-start space-x-4 w-full p-4 bg-[#D9D9D9] rounded-lg">
+    <div className="flex items-start space-x-4 p-4 bg-[#D9D9D9] rounded-lg">
       <img
         src={imagem}
         alt={name}

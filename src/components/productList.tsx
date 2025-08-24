@@ -29,10 +29,6 @@ export default function ProductList({
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto px-4 py-8 mb-6">
-      <a href="#salgado" className="text-lg font-semibold mb-6">
-        ITENS
-      </a>
-
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {produtos.map((prod) => (
           <ProductCard key={prod.id} produto={prod} />

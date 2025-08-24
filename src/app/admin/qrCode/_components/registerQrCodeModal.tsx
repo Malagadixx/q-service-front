@@ -78,7 +78,7 @@ export function QRCodeDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-neutral-300 text-sm rounded-lg h-[32px]">
+        <Button className="bg-neutral-300 text-sm rounded-lg h-[32px] hover:bg-neutral-400">
           Cadastrar QR Code
         </Button>
       </DialogTrigger>

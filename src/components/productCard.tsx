@@ -10,7 +10,7 @@ export function ProductCard({ produto }: Props) {
     <div className="bg-[#D9D9D9] w-full h-auto rounded-[10px] shadow flex justify-between p-4">
       <div className="flex flex-col justify-between">
         <div>
-          <h2 className="font-semibold text-sm">{produto.nome}</h2>
+          <h2 className="font-semibold text-lg">{produto.nome}</h2>
           <p className="text-xs text-gray-700">{produto.descricao}</p>
         </div>
         <span className="text-green-600 text-sm font-medium">

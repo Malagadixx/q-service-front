@@ -38,17 +38,23 @@ export default function Products() {
 
       {loading ? (
         <div className="w-full py-4 pb-4 bg-neutral-100 border rounded text-center">
-          <p className="text-xl font-semibold">Carregando QRCodes...</p>
+          <p className="text-xl font-semibold">Carregando Produtos...</p>
         </div>
       ) : (
-        products.map((product) => (
-          <ProductCardAdmin
-            key={product.id}
-            name={product.nome}
-            description={product.descricao}
-            imagem={product.imagem}
-          />
-        ))
+        <div className="flex flex-wrap gap-4">
+          {products.length === 0 ? (
+            <p className="text-xl font-semibold">Nenhum produto cadastrados.</p>
+          ) : (
+            products.map((product) => (
+              <ProductCardAdmin
+                key={product.id}
+                name={product.nome}
+                description={product.descricao}
+                imagem={product.imagem}
+              />
+            ))
+          )}
+        </div>
       )}
     </div>
   );

@@ -44,7 +44,7 @@ export default function QrCode() {
       ) : (
         <div className="flex flex-wrap gap-4">
           {mesas.length === 0 ? (
-            <p>Nenhuma mesa cadastrada.</p>
+            <p className="text-xl font-semibold">Nenhuma mesa cadastrada.</p>
           ) : (
             mesas.map((mesa) => (
               <QRCodeCard

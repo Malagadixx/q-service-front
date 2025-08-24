@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState, useEffect } from "react";
-import { toast } from "sonner"; // <- ✅ IMPORTANTE
+import { toast } from "sonner";
 
 export function ProductDialog() {
   const [open, setOpen] = useState(false);
@@ -74,7 +74,7 @@ export function ProductDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-neutral-300 text-sm rounded-lg h-[32px]">
+        <Button className="bg-neutral-300 text-sm rounded-lg h-[32px] hover:bg-neutral-400">
           Cadastrar Produto
         </Button>
       </DialogTrigger>
