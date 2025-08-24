@@ -3,7 +3,8 @@
 import { useCart } from "@/context/cartContext";
 import { CheckoutModal } from "./checkoutModal";
 import { ProductCard } from "./productCard";
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
+import { Product } from "@/type/product";
 
 type ProductListProps = {
   orderFinished?: boolean;
@@ -13,23 +14,21 @@ export default function ProductList({
   orderFinished = false,
 }: ProductListProps) {
   const { total } = useCart();
-  const [produtos, setProdcuts] = useState<Product[]>([])
+  const [produtos, setProdcuts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch('https://localhost:7057/api/Produtos')
+    fetch("https://localhost:7057/api/Produtos")
       .then((res) => res.json())
       .then((data: Product[]) => {
-        setProdcuts(data)
+        setProdcuts(data);
       })
       .catch((err) => {
-        console.error('Erro na requisição:', err)
-      })
-  }, [])
+        console.error("Erro na requisição:", err);
+      });
+  }, []);
 
   return (
     <div className="w-full max-w-screen-2xl mx-auto px-4 py-8 mb-6">
-      <h1 className="text-lg font-semibold mb-6">ITENS</h1>
-
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {produtos.map((prod) => (
           <ProductCard key={prod.id} produto={prod} />

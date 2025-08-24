@@ -11,6 +11,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "../context/cartContext";
 import { OrderConfirmedModal } from "./OrderConfirmedModal";
+import { ShoppingCart } from "lucide-react";
 
 export function CheckoutModal() {
   const { items, total } = useCart();
@@ -35,6 +36,9 @@ export function CheckoutModal() {
             className="bg-green-600 text-white px-6 py-3 rounded-full shadow-lg"
             onClick={() => setIsOpen(true)}
           >
+            <span>
+              <ShoppingCart />
+            </span>
             Finalizar pedido - R$ {total.toFixed(2)}
           </Button>
         </div>

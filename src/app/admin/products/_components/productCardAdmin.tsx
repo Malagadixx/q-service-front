@@ -1,19 +1,19 @@
 type Props = {
   name: string;
   description: string;
-  imageUrl: string;
+  imagem: string;
 };
 
-export function ProductCard({ name, description, imageUrl }: Props) {
+export function ProductCardAdmin({ name, description, imagem }: Props) {
   return (
-    <div className="flex items-start space-x-4 w-full max-w-[500px]">
+    <div className="flex items-start space-x-4 p-4 bg-[#D9D9D9] rounded-lg">
       <img
-        src={imageUrl}
+        src={imagem}
         alt={name}
         className="w-[100px] h-[100px] object-cover rounded-md"
       />
       <div className="flex flex-col">
-        <h2 className="text-lg font-semibold">{name}</h2>
+        <h2 className="text-3xl font-semibold">{name}</h2>
         <p className="text-sm text-gray-600">{description}</p>
       </div>
     </div>

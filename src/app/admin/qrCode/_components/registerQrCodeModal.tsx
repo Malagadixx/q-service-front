@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export function QRCodeDialog() {
   const [tableNumber, setTableNumber] = useState("");
@@ -24,18 +25,60 @@ export function QRCodeDialog() {
     }
   };
 
-  const handleSubmit = () => {
-    console.log("Mesa:", tableNumber);
-    console.log("Imagem:", image);
-    setTableNumber("");
-    setImage(null);
-    setOpen(false);
-  };
+  const handleSubmit = async () => {
+    if (!tableNumber || !image) {
+      toast.error("Por favor, insira o número da mesa e selecione uma imagem.");
+      return;
+    }
 
+    const toBase64 = (file: File): Promise<string> =>
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          const base64 = (reader.result as string).split(",")[1];
+          resolve(base64);
+        };
+        reader.onerror = reject;
+      });
+
+    try {
+      const base64Image = await toBase64(image);
+
+      const payload = {
+        numeroDaMesa: tableNumber,
+        qRcode: base64Image,
+      };
+
+      const response = await fetch("https://localhost:7057/api/Mesas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          "Erro ao cadastrar mesa: " + errorText || "Erro desconhecido"
+        );
+      }
+
+      toast.success("Mesa cadastrada com sucesso!");
+      setTableNumber("");
+      setImage(null);
+      setOpen(false);
+      window.location.reload();
+    } catch (error: any) {
+      console.error("Erro ao cadastrar mesa:", error);
+      toast.error("Erro ao cadastrar mesa. Veja o console.");
+    }
+  };
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-neutral-300 text-sm rounded-lg h-[32px]">
+        <Button className="bg-neutral-300 text-sm rounded-lg h-[32px] hover:bg-neutral-400">
           Cadastrar QR Code
         </Button>
       </DialogTrigger>

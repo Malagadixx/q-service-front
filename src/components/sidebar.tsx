@@ -19,7 +19,7 @@ import {
 
 export function Sidebar() {
   return (
-    <aside className="w-[382px] bg-[#F2F2F2] flex flex-col shadow-md shadow-[#00000040] space-y-2">
+    <aside className="w-[382px] bg-[#F2F2F2] flex flex-col shadow-md shadow-[#00000040] space-y-2 hover:cursor-pointer">
       <div className="flex ml-3.5 mt-4 text-neutral-500 items-center gap-3">
         <span>
           <Menu width={20} />
@@ -39,7 +39,7 @@ export function Sidebar() {
       <div className="flex flex-col gap-2 text-[#0000008C] ml-4">
         <Link
           href="/admin"
-          className="flex items-center gap-2 mt-4 w-auto space-x-2"
+          className="flex items-center gap-2 mt-4 w-auto space-x-2 py-2 pb-2 hover:bg-[#E6E6E6]"
         >
           <span>
             <House width={20} />
@@ -52,24 +52,24 @@ export function Sidebar() {
               <ShoppingBasket width={20} />
               Produtos
             </AccordionTrigger>
-            <AccordionContent className="ml-10 space-y-4 flex-row">
+            <AccordionContent className="ml-10 space-y-2 flex-row">
               <Link
                 href="/admin/products"
-                className="text-sm hover:text-primary flex items-center gap-2"
+                className="text-sm hover:text-primary flex items-center gap-2 hover:bg-[#E6E6E6] py-2 pb-2"
               >
                 <Pizza width={20} />
                 Produtos
               </Link>
               <Link
                 href="/admin/servicos"
-                className="text-sm hover:text-primary flex items-center gap-2"
+                className="text-sm hover:text-primary flex items-center gap-2 hover:bg-[#E6E6E6] py-2 pb-2"
               >
                 <ShoppingBag width={20} />
                 Serviços
               </Link>
               <Link
                 href="/admin/categorias"
-                className="text-sm hover:text-primary flex items-center gap-2"
+                className="text-sm hover:text-primary flex items-center gap-2 hover:bg-[#E6E6E6] py-2 pb-2"
               >
                 <Shapes width={20} />
                 Categorias

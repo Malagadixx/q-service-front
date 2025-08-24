@@ -1,21 +1,24 @@
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 interface QRCodeCardProps {
   table: number;
+  imageBase64: string;
   onEdit?: () => void;
   onDelete?: () => void;
 }
 
-export function QRCodeCard({ table, onEdit, onDelete }: QRCodeCardProps) {
+export function QRCodeCard({
+  table,
+  imageBase64,
+  onEdit,
+  onDelete,
+}: QRCodeCardProps) {
   return (
     <div className="w-[241px] h-[295px] bg-[#EDEDED] rounded-[8px] p-2 flex flex-col items-center gap-2 shadow">
-      <Image
-        src="/qrCode.png"
+      <img
+        src={`data:image/png;base64,${imageBase64}`}
         alt={`QR Code Mesa ${table}`}
-        width={203}
-        height={203}
-        className="rounded bg-white"
+        className="w-[203px] h-[203px] rounded bg-white object-contain"
       />
 
       <p className="text-[20.44px] font-bold">Mesa {table}</p>

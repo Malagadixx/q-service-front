@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "../context/cartContext";
+import { Product } from "@/type/product";
 
 type ProductModalProps = {
   produto: Product;
